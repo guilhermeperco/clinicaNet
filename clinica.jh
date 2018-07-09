@@ -1,0 +1,88 @@
+
+
+entity Paciente {
+	id Long required,
+    nome String,
+    cpf String,
+    dataNascimento LocalDate, 
+    sexo String,
+    estadoCivil EstadoCivil,
+    endereco String,  
+    naturalidade String
+}
+
+entity Medico {
+	id Long required,
+	nome String,
+	crm Long required,
+	especialidades Especialidade
+}
+
+entity Consulta {
+	id Long required,
+	dataHora LocalDate,
+    anotacoesDoMedico String   
+}
+
+enum EstadoCivil {
+    CASADO, SOLTEIRO, DIVORCIADO, VIUVO
+}
+
+enum Especialidade {
+    CARDIO, ENDOCRINOLOGIA, ORTOPEDIA, PEDIATRIA
+}
+
+entity Contato {
+	id Long required,
+	name String,
+	value String,
+    observation String
+}
+
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Paciente{paciente} to Consulta,
+	Medico{medico} to Consulta
+	
+}
+
+relationship ManyToOne {
+	Medico{contato} to Contato,
+    Paciente{contato} to Contato
+}
+
+
+// Set pagination options
+paginate Consulta, Paciente with infinite-scroll
+paginate Medico with pagination
+
+// Set service options to all except few
+service all with serviceImpl 
+// Set an angular suffix
+angularSuffix * with clinic
+
+// only to doc
+//relationship ManyToMany {
+//	Job{task(title)} to Task{job}
+
+//relationship OneToOne {
+//	Country{region} to Region
+//}
+
+//relationship OneToOne {
+//	Location{country} to Country
+//}
+
+//relationship OneToOne {
+//	Department{location} to Location
+//}
+
+// defining multiple oneToOne relationships
+//relationship OneToOne {
+//	JobHistory{job} to Job,
+//	JobHistory{department} to Department,
+//	JobHistory{employee} to Employee
+//}
+
+//}
