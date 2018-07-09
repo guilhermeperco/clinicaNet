@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="medico">
+            <h2><span jhiTranslate="clinicaNetApp.medico.detail.title">Medico</span> {{medico.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="clinicaNetApp.medico.nome">Nome</span></dt>
+                <dd>
+                    <span>{{medico.nome}}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaNetApp.medico.crm">Crm</span></dt>
+                <dd>
+                    <span>{{medico.crm}}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaNetApp.medico.especialidades">Especialidades</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'clinicaNetApp.Especialidade.' + medico.especialidades}}">{{medico.especialidades}}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaNetApp.medico.contato">Contato</span></dt>
+                <dd>
+                    <div *ngIf="medico.contato">
+                        <a [routerLink]="['/contato-clinic', medico.contato?.id, 'view']">{{medico.contato?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/medico-clinic', medico.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

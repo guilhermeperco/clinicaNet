@@ -1,0 +1,45 @@
+{
+    "name": "Medico",
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "crm",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "especialidades",
+            "fieldType": "Especialidade",
+            "fieldValues": "CARDIO,ENDOCRINOLOGIA,ORTOPEDIA,PEDIATRIA"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "medico",
+            "otherEntityName": "consulta",
+            "otherEntityRelationshipName": "medico"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "contato",
+            "otherEntityName": "contato",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180709182933",
+    "entityTableName": "medico",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "clinic"
+}

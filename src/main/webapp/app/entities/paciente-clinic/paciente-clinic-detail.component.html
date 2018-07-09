@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="paciente">
+            <h2><span jhiTranslate="clinicaNetApp.paciente.detail.title">Paciente</span> {{paciente.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="clinicaNetApp.paciente.nome">Nome</span></dt>
+                <dd>
+                    <span>{{paciente.nome}}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaNetApp.paciente.cpf">Cpf</span></dt>
+                <dd>
+                    <span>{{paciente.cpf}}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaNetApp.paciente.dataNascimento">Data Nascimento</span></dt>
+                <dd>
+                    <span>{{paciente.dataNascimento}}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaNetApp.paciente.sexo">Sexo</span></dt>
+                <dd>
+                    <span>{{paciente.sexo}}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaNetApp.paciente.estadoCivil">Estado Civil</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'clinicaNetApp.EstadoCivil.' + paciente.estadoCivil}}">{{paciente.estadoCivil}}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaNetApp.paciente.endereco">Endereco</span></dt>
+                <dd>
+                    <span>{{paciente.endereco}}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaNetApp.paciente.naturalidade">Naturalidade</span></dt>
+                <dd>
+                    <span>{{paciente.naturalidade}}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicaNetApp.paciente.contato">Contato</span></dt>
+                <dd>
+                    <div *ngIf="paciente.contato">
+                        <a [routerLink]="['/contato-clinic', paciente.contato?.id, 'view']">{{paciente.contato?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/paciente-clinic', paciente.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
