@@ -1,0 +1,98 @@
+
+
+
+entity Paciente {
+	id Number required,
+    nome String,
+    cpf String,
+    dataNascimento Date, 
+    sexo String,
+    estadoCivil EstadoCivil,
+    endereco String,  
+    naturalidade String,
+    contatos Contato    
+}
+
+entity Medico {
+	id Number required,
+	nome String,
+	contatos Contato,
+	crm Number required,
+	especialidades Especialidade
+}
+
+entity Consulta {
+	id Number required,
+	dataHora LocalDate,
+	medico Medico,
+    paciente Paciente,
+    anotacoesDoMedico String,    
+}
+
+enum EstadoCivil {
+    CASADO, SOLTEIRO, DIVORCIADO, VIUVO
+}
+
+enum Especialidade {
+    CARDIO, ENDOCRINOLOGIA, ORTOPEDIA, PEDIATRIA
+}
+
+entity Contato {
+	id Number required,
+	name String,
+	value String,
+    observation String
+}
+
+
+
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Paciente{paciente} to Consulta,
+	/**
+	* A relationship
+	*/
+	Medico{medico} to Consulta
+	
+}
+
+relationship ManyToOne {
+	Medico{contato} to Contato,
+    Paciente{contato} to Contato
+}
+
+
+// Set pagination options
+paginate Consulta, Paciente with infinite-scroll
+paginate Medico with pagination
+
+// Set service options to all except few
+service all with serviceImpl 
+// Set an angular suffix
+angularSuffix * with clinic
+
+// only to doc
+//relationship ManyToMany {
+//	Job{task(title)} to Task{job}
+
+//relationship OneToOne {
+//	Country{region} to Region
+//}
+
+//relationship OneToOne {
+//	Location{country} to Country
+//}
+
+//relationship OneToOne {
+//	Department{location} to Location
+//}
+
+// defining multiple oneToOne relationships
+//relationship OneToOne {
+//	JobHistory{job} to Job,
+//	JobHistory{department} to Department,
+//	JobHistory{employee} to Employee
+//}
+
+//}
