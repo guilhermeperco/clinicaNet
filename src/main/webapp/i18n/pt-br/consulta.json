@@ -1,0 +1,25 @@
+
+{
+    "clinicaNetApp": {
+        "consulta" : {
+            "home": {
+                "title": "Consultas",
+                "createLabel": "Criar novo Consulta",
+                "createOrEditLabel": "Criar ou editar Consulta"
+            },
+            "created": "Um novo Consulta foi criado com o identificador {{ param }}",
+            "updated": "Um Consulta foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Consulta foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Consulta {{ id }}?"
+            },
+            "detail": {
+                "title": "Consulta"
+            },
+            "dataHora": "Data Hora",
+            "anotacoesDoMedico": "Anotacoes Do Medico",
+            "paciente": "Paciente",
+            "medico": "Medico"
+        }
+    }
+}

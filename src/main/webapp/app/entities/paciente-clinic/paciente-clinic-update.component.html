@@ -1,0 +1,75 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-paciente-clinic-heading" jhiTranslate="clinicaNetApp.paciente.home.createOrEditLabel">Create or edit a Paciente</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!paciente.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="paciente.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="clinicaNetApp.paciente.nome" for="field_nome">Nome</label>
+                    <input type="text" class="form-control" name="nome" id="field_nome"
+                        [(ngModel)]="paciente.nome" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="clinicaNetApp.paciente.cpf" for="field_cpf">Cpf</label>
+                    <input type="text" class="form-control" name="cpf" id="field_cpf"
+                        [(ngModel)]="paciente.cpf" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="clinicaNetApp.paciente.dataNascimento" for="field_dataNascimento">Data Nascimento</label>
+                    <div class="input-group">
+                        <input id="field_dataNascimento" type="text" class="form-control" name="dataNascimento" ngbDatepicker  #dataNascimentoDp="ngbDatepicker" [(ngModel)]="paciente.dataNascimento"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dataNascimentoDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="clinicaNetApp.paciente.sexo" for="field_sexo">Sexo</label>
+                    <input type="text" class="form-control" name="sexo" id="field_sexo"
+                        [(ngModel)]="paciente.sexo" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="clinicaNetApp.paciente.estadoCivil" for="field_estadoCivil">Estado Civil</label>
+                    <select class="form-control" name="estadoCivil" [(ngModel)]="paciente.estadoCivil" id="field_estadoCivil" >
+                        <option value="CASADO">{{'clinicaNetApp.EstadoCivil.CASADO' | translate}}</option>
+                        <option value="SOLTEIRO">{{'clinicaNetApp.EstadoCivil.SOLTEIRO' | translate}}</option>
+                        <option value="DIVORCIADO">{{'clinicaNetApp.EstadoCivil.DIVORCIADO' | translate}}</option>
+                        <option value="VIUVO">{{'clinicaNetApp.EstadoCivil.VIUVO' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="clinicaNetApp.paciente.endereco" for="field_endereco">Endereco</label>
+                    <input type="text" class="form-control" name="endereco" id="field_endereco"
+                        [(ngModel)]="paciente.endereco" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="clinicaNetApp.paciente.naturalidade" for="field_naturalidade">Naturalidade</label>
+                    <input type="text" class="form-control" name="naturalidade" id="field_naturalidade"
+                        [(ngModel)]="paciente.naturalidade" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="clinicaNetApp.paciente.contato" for="field_contato">Contato</label>
+                    <select class="form-control" id="field_contato" name="contato" [(ngModel)]="paciente.contato" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="contatoOption.id === paciente.contato?.id ? paciente.contato : contatoOption" *ngFor="let contatoOption of contatoes; trackBy: trackContatoById">{{contatoOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

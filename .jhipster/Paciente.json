@@ -1,0 +1,58 @@
+{
+    "name": "Paciente",
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cpf",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dataNascimento",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "sexo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "estadoCivil",
+            "fieldType": "EstadoCivil",
+            "fieldValues": "CASADO,SOLTEIRO,DIVORCIADO,VIUVO"
+        },
+        {
+            "fieldName": "endereco",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "naturalidade",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "paciente",
+            "otherEntityName": "consulta",
+            "otherEntityRelationshipName": "paciente"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "contato",
+            "otherEntityName": "contato",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180709182932",
+    "entityTableName": "paciente",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "clinic"
+}

@@ -1,0 +1,11 @@
+{
+    "clinicaNetApp": {
+        "Especialidade" : {
+            "null": "",
+            "CARDIO": "CARDIO",
+            "ENDOCRINOLOGIA": "ENDOCRINOLOGIA",
+            "ORTOPEDIA": "ORTOPEDIA",
+            "PEDIATRIA": "PEDIATRIA"
+        }
+    }
+}

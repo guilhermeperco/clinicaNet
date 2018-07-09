@@ -1,0 +1,11 @@
+{
+    "clinicaNetApp": {
+        "EstadoCivil" : {
+            "null": "",
+            "CASADO": "CASADO",
+            "SOLTEIRO": "SOLTEIRO",
+            "DIVORCIADO": "DIVORCIADO",
+            "VIUVO": "VIUVO"
+        }
+    }
+}

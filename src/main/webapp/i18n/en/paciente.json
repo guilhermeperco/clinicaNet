@@ -1,0 +1,30 @@
+
+{
+    "clinicaNetApp": {
+        "paciente" : {
+            "home": {
+                "title": "Pacientes",
+                "createLabel": "Create a new Paciente",
+                "createOrEditLabel": "Create or edit a Paciente"
+            },
+            "created": "A new Paciente is created with identifier {{ param }}",
+            "updated": "A Paciente is updated with identifier {{ param }}",
+            "deleted": "A Paciente is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Paciente {{ id }}?"
+            },
+            "detail": {
+                "title": "Paciente"
+            },
+            "nome": "Nome",
+            "cpf": "Cpf",
+            "dataNascimento": "Data Nascimento",
+            "sexo": "Sexo",
+            "estadoCivil": "Estado Civil",
+            "endereco": "Endereco",
+            "naturalidade": "Naturalidade",
+            "paciente": "Paciente",
+            "contato": "Contato"
+        }
+    }
+}

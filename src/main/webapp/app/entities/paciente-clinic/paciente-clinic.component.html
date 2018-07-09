@@ -1,0 +1,72 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="clinicaNetApp.paciente.home.title">Pacientes</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-paciente-clinic" [routerLink]="['/paciente-clinic/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="clinicaNetApp.paciente.home.createLabel">
+            Create new Paciente
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="pacientes">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nome"><span jhiTranslate="clinicaNetApp.paciente.nome">Nome</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="cpf"><span jhiTranslate="clinicaNetApp.paciente.cpf">Cpf</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dataNascimento"><span jhiTranslate="clinicaNetApp.paciente.dataNascimento">Data Nascimento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="sexo"><span jhiTranslate="clinicaNetApp.paciente.sexo">Sexo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="estadoCivil"><span jhiTranslate="clinicaNetApp.paciente.estadoCivil">Estado Civil</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="endereco"><span jhiTranslate="clinicaNetApp.paciente.endereco">Endereco</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="naturalidade"><span jhiTranslate="clinicaNetApp.paciente.naturalidade">Naturalidade</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="contato.id"><span jhiTranslate="clinicaNetApp.paciente.contato">Contato</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let paciente of pacientes ;trackBy: trackId">
+                <td><a [routerLink]="['/paciente-clinic', paciente.id, 'view' ]">{{paciente.id}}</a></td>
+                <td>{{paciente.nome}}</td>
+                <td>{{paciente.cpf}}</td>
+                <td>{{paciente.dataNascimento | date:'mediumDate'}}</td>
+                <td>{{paciente.sexo}}</td>
+                <td jhiTranslate="{{'clinicaNetApp.EstadoCivil.' + paciente.estadoCivil}}">{{paciente.estadoCivil}}</td>
+                <td>{{paciente.endereco}}</td>
+                <td>{{paciente.naturalidade}}</td>
+                <td>
+                    <div *ngIf="paciente.contato">
+                        <a [routerLink]="['../contato-clinic', paciente.contato?.id, 'view' ]" >{{paciente.contato?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/paciente-clinic', paciente.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/paciente-clinic', paciente.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'paciente-clinic/'+ paciente.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

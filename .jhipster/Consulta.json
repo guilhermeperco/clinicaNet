@@ -1,0 +1,37 @@
+{
+    "name": "Consulta",
+    "fields": [
+        {
+            "fieldName": "dataHora",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "anotacoesDoMedico",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "paciente",
+            "otherEntityName": "paciente",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "medico",
+            "otherEntityName": "medico",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180709182934",
+    "entityTableName": "consulta",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "clinic"
+}
